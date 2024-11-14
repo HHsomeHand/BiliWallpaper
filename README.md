@@ -22,7 +22,15 @@
 
   喜欢请给个评分或是github点个star, 谢谢!!\(￣︶￣*\)) 您的鼓励就是我前进的最大的动力
 
-  
+
+
+## 如何下载
+
++ [release页面](https://github.com/HHsomeHand/BiliWallpaper/releases)
+
++ [脚本猫](https://scriptcat.org/zh-CN/script-show-page/1795)
+
++ [greasyfork下载地址](https://greasyfork.org/zh-CN/scripts/488530-b%E7%AB%99%E7%BE%8E%E5%8C%96%E6%8F%92%E4%BB%B6)
 
   ## 描述:
   一个可以高度自定义的油猴脚本, 作用是美化B站, 支持用户自定义背景图片, 和管理背景图片, 以及设置背景图片的位置大小显示模式
