@@ -1,7 +1,28 @@
-# Vue 3 + Vite
+- ## 简述: 什么是B站美化脚本
+  + 🩷 屏蔽视频推送, 避免搜索资料时分心
+  + 🩷 去除搜索推荐
+  + 🩷 美化, 支持自定义背景
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+  
 
-## Recommended IDE Setup
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+  ## Q: 如何打开设置? 如何上传壁纸? 如何管理壁纸?
+  A: 点击浏览器右上角油猴或脚本猫图标, 点击 " 设置(点我切换背景图片)"
+
+  
+
+  ## 2024/11/14 版本更新!
+  + ✅ 向下滚动鼠标解除屏蔽
+  + ✅ 拖拽上传壁纸 (支持一次性上传多张)
+  + ✅ 用户界面友好的壁纸管理面板(重命名, 删除, 批量删除壁纸)
+  + ✅ 超多配置选项, 让您亲自定义出专属于您的B站浏览体验 
+  + ✅ 超级友好的用户交互体验
+
+  
+
+  喜欢请给个评分或是github点个star, 谢谢!!\(￣︶￣*\)) 您的鼓励就是我前进的最大的动力
+
+  
+
+  ## 描述:
+  一个可以高度自定义的油猴脚本, 作用是美化B站, 支持用户自定义背景图片, 和管理背景图片, 以及设置背景图片的位置大小显示模式
