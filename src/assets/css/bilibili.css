@@ -1,0 +1,92 @@
+:root {
+  --scroll-duration: 0.5s;
+  --scroll-timing-function: ease;
+  --search-bar-top-gap: 35vh;
+
+  --wallpaper-pos-x: center;
+  --wallpaper-pos-y: center;
+  --wallpaper-size: cover;
+  --wallpaper-bg-color: whitesmoke;
+}
+
+.adblock-tips {
+  display: none !important;
+}
+
+.el-message-box .el-button.el-button--primary{
+  background-color: #409eff;;
+}
+
+.monkey-hidden {
+  display: none !important;
+}
+
+
+/*
+===============
+== 删除广告  ==
+===============
+*/
+/*!* 游戏中心 *!*/
+/*#i_cecream > div.bili-feed4 > div.bili-header.large-header > div.bili-header__bar > ul.left-entry > li:nth-child(4),*/
+/*!* 会员购 *!*/
+/*#i_cecream > div.bili-feed4 > div.bili-header.large-header > div.bili-header__bar > ul.left-entry > li:nth-child(5),*/
+/*!* 科学晚 *!*/
+/*#i_cecream > div.bili-feed4 > div.bili-header.large-header > div.bili-header__bar > ul.left-entry > li:nth-child(9),*/
+/*!* 上传按钮: 为了让整体更加美观 *!*/
+/*.right-entry-item--upload,*/
+/* 广告卡 */
+.adcard
+{
+  display: none !important;
+}
+
+/*
+===============
+== 顶部搜索栏 ==
+===============
+*/
+.center-search__bar {
+  translate: 0 var(--search-bar-top-gap);
+}
+
+/*.search-panel .trending {*/
+/*  display: none;*/
+/*}*/
+
+/* banner条 */
+.bili-header__banner,
+/* 固定频道条 */
+.bili-header__channel,
+/* 视频推送 */
+.bili-feed4-layout
+{
+  transition: translate var(--scroll-duration)  var(--scroll-timing-function);
+  translate: 0 100vh;
+}
+
+/*
+===============
+== 浮动频道条(向下滚时会显示"动态, 热门"并固定在顶部的那个控件)
+===============
+*/
+
+/* 隐藏浮动频道条 */
+.header-channel {
+  /* delay设置为var(--scroll-duration)是为了显示完内容后浮动频道条再出现 */
+  transition: translate 0.2s var(--scroll-timing-function) var(--scroll-duration);
+  /* 隐藏浮动频道条, 如果这里用display, 无法通过--scroll-duration统一控制延时*/
+  translate: 0 100vh !important;
+} 
+
+/* 
+  显示浮动频道条
+  用id选择器加高权重修改, 而不是直接js修改的原因:
+  B站首页是基于Vue的, 会动态修改元素style, 
+  最好不要用dom修改style属性, B站用的Vue会覆盖我们写的style
+  这里用添加id的方式控制
+*/
+#header-channel-show {
+  translate: 0 0 !important;
+}
+
