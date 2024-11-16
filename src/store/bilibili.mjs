@@ -27,7 +27,8 @@ export const useBiliStore = defineStore('bilibili', () => {
         display: none !important;
       }
     `),
-    "热门搜索词": useIsShowPlaceholder()
+    "热门搜索词": useIsShowPlaceholder(),
+    "活动(动画)": useDisplayConfig('display-dynamic-icon', false, '#i_cecream > div.bili-feed4 > div.bili-header.large-header > div.bili-header__bar > ul.left-entry > li.v-popover-wrap.left-loc-entry')
   });
 
   const displayConfigCount = computed(() => {
