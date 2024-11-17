@@ -2,7 +2,7 @@ import {useConfig} from "@/hooks/useConfig.mjs";
 import {watch} from 'vue'
 
 
-export  function useStyleConfig(key, defaultValue, cssContent) {
+export  function useStyle(key, defaultValue, cssContent) {
     const isApplied = useConfig(key, defaultValue);
 
     // 创建 <style> 元素

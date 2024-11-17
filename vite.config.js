@@ -1,5 +1,5 @@
 import path from 'path'
-import { defineConfig } from 'vite'
+import {defineConfig, loadEnv} from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
@@ -46,21 +46,29 @@ export default defineConfig({
 
     {
       name: 'generate-base64-constants',
-      // 使用 build.end 钩子，这样会确保它在打包时触发
       buildEnd() {
         const imgDir = path.resolve(__dirname, 'src/assets/img');
         const images = fs.readdirSync(imgDir);
-        const base64Images = images.reduce((acc, image) => {
+
+        // 判断是否是 最小化构建
+        const env = loadEnv("mode", process.cwd());
+        const isSmallBuild = env.VITE_SMALL_BUILD === 'true';
+        const targetImage = '蓝山.jpg'; // 最小打包时, 打包的图片
+
+        const filteredImages = isSmallBuild
+            ? images.filter(image => image === targetImage)
+            : images;
+
+        const base64Images = filteredImages.reduce((acc, image) => {
           const imgPath = path.join(imgDir, image);
           const imgData = fs.readFileSync(imgPath);
-          // 获取扩展名, 并去掉.
           const base64 = `data:image/${path.extname(image).slice(1)};base64,${imgData.toString('base64')}`;
-          const filename = path.parse(image).name  
+          const filename = path.parse(image).name;
           acc[filename] = base64;
           return acc;
         }, {});
 
-        const comment = '// 此文件由vite自动读取 @/assets/img 生成, 请不要人为修改 \n'
+        const comment = '// 此文件由vite自动读取 @/assets/img 生成, 请不要人为修改 \n';
 
         // 生成常量文件并写入
         const constants = comment + `export const wallpaperBase64 = ${JSON.stringify(base64Images, null, 2)};`;
