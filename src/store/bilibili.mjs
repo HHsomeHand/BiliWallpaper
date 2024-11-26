@@ -3,7 +3,7 @@ import { ref, watch, computed } from "vue";
 import { applyOriginalShowState } from "../dom-bili/operations.mjs";
 import {useCssVar} from "@/hooks/useCssVar.mjs";
 import {useCssVarFormat} from "../hooks/useCssVarFormat.mjs";
-import {usePlaceHolderShowState} from "@/hooks/usePlaceHolderShowState.mjs";
+import {usePlaceHolderShowSate} from "@/hooks/usePlaceHolderShowState.mjs";
 import {useStyleElement} from "@/hooks/useStyleElement.mjs";
 import {useDisplayNone} from "@/hooks/useDisplayNone.mjs";
 import {useBooleanReverse} from "@/hooks/useBooleanReverse.mjs";
@@ -32,7 +32,7 @@ export const useBiliStore = defineStore('bilibili', () => {
         display: none !important;
       }
     `),
-    "热门搜索词": usePlaceHolderShowState(),
+    "热门搜索词": usePlaceHolderShowSate('.nav-search-content > input'),
   });
 
   const displayConfigCount = computed(() => {

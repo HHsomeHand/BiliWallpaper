@@ -3,10 +3,10 @@ import {useConfig} from "@/hooks/useConfig.mjs";
 import {watch} from "vue";
 import {queryAsync} from "@/dom-bili/queryAsync.mjs";
 
-export function usePlaceHolderShowSate() {
+export function usePlaceHolderShowSate(inputSelector) {
     const isShowPlaceHolder = useConfig('isClearPlaceholder', false);
 
-    queryAsync('.nav-search-content > input').then(inputEl => {
+    queryAsync(inputSelector).then(inputEl => {
         let placeholder =inputEl.placeholder;
 
         watch(isShowPlaceHolder, () => {
