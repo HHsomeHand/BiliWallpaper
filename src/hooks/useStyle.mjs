@@ -1,25 +1,21 @@
 import {useConfig} from "@/hooks/useConfig.mjs";
-import {watch} from 'vue'
+import {watch} from "vue";
+import {queryAsync} from "@/dom-bili/queryAsync.mjs";
 
+export function useStyle(key, defaultValue, selector, styleKey, value) {
+    const config = useConfig(key, defaultValue);
 
-export  function useStyle(key, defaultValue, cssContent) {
-    const isApplied = useConfig(key, defaultValue);
-
-    // 创建 <style> 元素
-    const style = document.createElement('style');
-
-    style.innerHTML = cssContent;
-
-    watch(isApplied, () => {
-        if (isApplied.value) {
-            document.head.appendChild(style);
-        } else {
-            if (style.parentNode === document.head) {
-                document.head.removeChild(style);
+    queryAsync(selector).then((ele) => {
+        watch(config, () => {
+            if (config.value) {
+                ele.style[styleKey] = value;
+            } else {
+                ele.style[styleKey] = "";
             }
-        }
-    }, {immediate: true});
+        }, {immediate: true});
+    }).catch(msg => {
+        console.error(msg);
+    });
 
-    return isApplied;
-
+    return config;
 }

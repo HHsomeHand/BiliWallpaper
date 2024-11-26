@@ -12,27 +12,6 @@ export function $Q(selector) {
   }
 }
 
-export function $Q_Async(selector, timeout = 5000) {
-  return new Promise((resolve, reject) => {
-    const startTime = Date.now();
-
-    function check() {
-      const ele = document.querySelector(selector);
-      if (ele !== null) {
-        resolve(ele); // 找到元素，结束 Promise
-      }
-      if (Date.now() - startTime > timeout) {
-        reject(`$Q_Async: Timeout: Cannot find element for selector "${selector}"`);
-      }
-    }
-
-    let id = setInterval(() => {
-      check();
-      clearInterval(id);
-    }, 100);
-  });
-}
-
 export function $QALL(query) {
   return document.querySelectorAll(query);
 }
