@@ -26,11 +26,16 @@
 
 ## 如何下载
 
-+ [release页面](https://github.com/HHsomeHand/BiliWallpaper/releases)
-
 + [脚本猫](https://scriptcat.org/zh-CN/script-show-page/1795)
 
 + [greasyfork下载地址](https://greasyfork.org/zh-CN/scripts/488530-b%E7%AB%99%E7%BE%8E%E5%8C%96%E6%8F%92%E4%BB%B6)
 
-  ## 描述:
+## 编译脚本
+`pnpm run build:small`: 最小化编译, 生成带一个默认壁纸的脚本
+
+`pnpm run build`: 完全构建, 生成带全部壁纸的版本(已经弃用)
+
+> 最好不要通过Github Release 发布页或编译下载脚本, 最好通过 脚本猫 或 greasyfork 下载, 这样脚本作者的每一次bug修复和更新, 您都可以收到
+
+## 描述:
   一个可以高度自定义的油猴脚本, 作用是美化B站, 支持用户自定义背景图片, 和管理背景图片, 以及设置背景图片的位置大小显示模式
