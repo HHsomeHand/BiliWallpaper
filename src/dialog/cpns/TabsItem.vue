@@ -19,11 +19,15 @@ onMounted(() => {
 });
 
 const {isShowContact} = storeToRefs(mainStore);
+
+function onMouseDown(event) {
+  event.stopPropagation();
+}
 </script>
 
 <template>
 <div class="tabs-item">
-  <el-tabs v-model="tabsCurrSel">
+  <el-tabs @mousedown="onMouseDown" v-model="tabsCurrSel">
     <el-collapse-transition>
       <el-tab-pane ref="uploadPaneRef"  label="上传壁纸" name="0">
         <upload-pane />
@@ -56,7 +60,7 @@ const {isShowContact} = storeToRefs(mainStore);
   /* margin-left: calc(var(--el-dialog-padding-primary) * -1); */
   /* 往上移 */
   margin-top: calc(var(--el-dialog-padding-primary) * -2 + 8px) ;
-
+  cursor: default;
   
 }
 

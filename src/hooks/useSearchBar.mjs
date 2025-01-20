@@ -24,5 +24,5 @@ export function useSearchBar(inputSelector) {
     }).catch(err => console.error(err));
 
 
-    return {isShowPlaceHolder, isAutoFocus};
+    return {isShowPlaceHolder: isShowPlaceHolder, isAutoFocus};
 }

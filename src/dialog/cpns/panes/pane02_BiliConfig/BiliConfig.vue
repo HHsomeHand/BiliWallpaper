@@ -130,10 +130,10 @@ const activeName = useConfig('bili-config-active-name', false);
 
     <NumRowConfig
         v-model="searchBarXOffset"
-        desc="搜索框X轴偏移, 单位px:"
+        desc="搜索框X轴偏移, 单位vw:"
         default-btn-desc="偏移设为默认值"
         :default-value="SEARCH_BAR_X_OFFSET"
-        tip="正数往右偏, 复数往左偏"
+        tip="正数往右偏, 负数往左偏"
     />
 
     <css-var-config :tip="posTipX" v-model="wallpaperPosX" default="center" mode="string" :options="optionsX" >
@@ -188,6 +188,7 @@ const activeName = useConfig('bili-config-active-name', false);
 }
 
 .bili-config {
+
   .wide-row {
     margin-right: calc(var(--el-dialog-padding-primary) * -2) ;
   }
