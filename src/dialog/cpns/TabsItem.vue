@@ -7,50 +7,48 @@ import ContactSupport from "./panes/pane03_ContactSupport/ContactSupport.vue";
 import { useConfig } from '@/Hooks/useConfig.mjs';
 import { useMainStore } from '@/store/main.mjs';
 import { storeToRefs } from 'pinia';
+import PaneItem from "@/dialog/cpns/panes/PaneItem.vue";
 
 const mainStore = useMainStore();
 
 const {tabsCurrSel} = storeToRefs(mainStore);
 
-const uploadPaneRef = ref();
-onMounted(() => {
-  // 必须设置行内高度, 不然transition会弹跳
-  uploadPaneRef.value.$el.style.height = '300px';
-});
+const panes = [
+  {
+    label: '上传壁纸',
+    component: UploadPane,
+    name: '0',
+  },
+  {
+    label: '管理壁纸',
+    component: WallpaperConfig,
+    name: '1',
+  },
+  {
+    label: '屏蔽设置',
+    component: BiliConfig,
+    name: '2',
+  },
+  {
+    label: '联系作者',
+    component: ContactSupport,
+    name: '3',
+  }
 
-const {isShowContact} = storeToRefs(mainStore);
-
-function onMouseDown(event) {
-  event.stopPropagation();
-}
+]
 </script>
 
 <template>
 <div class="tabs-item">
-  <el-tabs @mousedown="onMouseDown" v-model="tabsCurrSel">
-    <el-collapse-transition>
-      <el-tab-pane ref="uploadPaneRef"  label="上传壁纸" name="0">
-        <upload-pane />
-      </el-tab-pane>
-    </el-collapse-transition>
-    <el-collapse-transition>
-      <el-tab-pane label="管理壁纸" name="1">
-        <wallpaper-config />
-      </el-tab-pane>
-    </el-collapse-transition>
-    <el-collapse-transition>
-      <el-tab-pane label="屏蔽设置" name="2">
-        <bili-config />
-      </el-tab-pane>
-    </el-collapse-transition>
-    <template v-if="isShowContact">
-      <el-collapse-transition>
-        <el-tab-pane label="联系作者" name="3">
-          <contact-support />
-        </el-tab-pane>
-      </el-collapse-transition>
+  <el-tabs v-model="tabsCurrSel">
+    <template v-for="pane in panes">
+      <PaneItem
+          :label="pane.label"
+          :name="pane.name"
+      >
+        <component :is="pane.component" />
+      </PaneItem>
     </template>
-
   </el-tabs>
 </div>
 </template>
@@ -60,7 +58,7 @@ function onMouseDown(event) {
   /* margin-left: calc(var(--el-dialog-padding-primary) * -1); */
   /* 往上移 */
   margin-top: calc(var(--el-dialog-padding-primary) * -2 + 8px) ;
-  cursor: default;
+
   
 }
 

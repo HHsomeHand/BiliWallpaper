@@ -70,9 +70,6 @@ export const useMainStore = defineStore('main', () => {
     return `url(${wallpaperBase64Obj.value[currWallpaperName.value]})`
   });
 
-  const isShowContact = useConfig('isShowContact', true);
-
-
   return {
     deleteWallpaper,
     renameWallpaper,
@@ -86,6 +83,5 @@ export const useMainStore = defineStore('main', () => {
     tabsCurrSel,
     collapseCurrSel,
     currWallpaperBase64Url,
-    isShowContact
   };
 })

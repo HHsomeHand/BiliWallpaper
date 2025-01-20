@@ -35,7 +35,7 @@ const rowCount = computed(() => {
 
 const mainStore = useMainStore();
 
-const {isShowContact} = storeToRefs(mainStore);
+// const {isShowContact} = storeToRefs(mainStore);
 
 let optionsX = [
   {
@@ -155,11 +155,11 @@ const activeName = useConfig('bili-config-active-name', false);
       </el-col>
     </el-row>
 
-    <el-row class="gap-setting-row">
-      <el-col class="gap-setting-container" :span="24">
-        <el-checkbox label="是否显示联系面板" v-model="isShowContact" />
-      </el-col>
-    </el-row>
+<!--    <el-row class="gap-setting-row">-->
+<!--      <el-col class="gap-setting-container" :span="24">-->
+<!--        <el-checkbox label="是否显示联系面板" v-model="isShowContact" />-->
+<!--      </el-col>-->
+<!--    </el-row>-->
 
     <el-collapse v-model="activeName" accordion>
       <el-collapse-item title="高级壁纸设置" name="1">

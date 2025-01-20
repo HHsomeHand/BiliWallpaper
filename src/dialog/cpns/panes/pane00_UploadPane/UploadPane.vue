@@ -10,5 +10,7 @@ import UploadItem from './cpns/UploadItem.vue'
 </template>
 
 <style scoped>
-
+.wallpaper-pane {
+  height: 300px;
+}
 </style>
