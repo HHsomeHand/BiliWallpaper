@@ -1,5 +1,5 @@
 // 通用dom操作
-export function $Q(selector) {
+function getErrEl() {
   let errEl = document.body.errEl;
 
   if (errEl === undefined) {
@@ -10,6 +10,12 @@ export function $Q(selector) {
     document.body.errEl = errEl;
   }
 
+  return errEl;
+}
+
+const errEl = getErrEl();
+
+export function $Q(selector) {
   let ele = document.querySelector(selector);
   if (ele == null) {
     // 边界情况, 当没找到时, 避免使用者操作null对象

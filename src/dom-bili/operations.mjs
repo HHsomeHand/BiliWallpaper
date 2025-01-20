@@ -1,6 +1,21 @@
 import { $Q } from "./utils.mjs";
-import {useConfig} from "@/hooks/useConfig.mjs";
 import {SCROLL_DURATION} from "@/const/search-bar-const.js";
+
+let timeHandle = null;
+
+function testTimeout () {
+  if (timeHandle !== null) {
+    // 调用之前，先清理，防止一直生成对象
+    clearTimeout(timeHandle);
+    timeHandle = null;
+  }
+}
+
+function mySetTimout(handle, timeout) {
+  testTimeout();
+  timeHandle = setTimeout(handle, timeout);
+}
+
 
 export async function applyOriginalShowState(isShow) {
   if (isShow) {
@@ -13,7 +28,7 @@ export async function applyOriginalShowState(isShow) {
 
     $Q('.center-search-container').style.opacity = '0';
 
-    setTimeout(() => {
+    mySetTimout(() => {
       $Q('.center-search-container').style.position = 'static';
       $Q('.center-search-container').style.translate = '0 0';
       $Q('.center-search-container').style.opacity = '1';
@@ -31,7 +46,7 @@ export async function applyOriginalShowState(isShow) {
     $Q('.bili-feed4-layout').style.translate = '';
 
     $Q('.center-search-container').style.opacity = '0';
-    setTimeout(() => {
+    mySetTimout(() => {
       $Q('.center-search-container').style.translate = '';
       $Q('.center-search-container').style.position = '';
       $Q('.center-search-container').style.opacity = '1';

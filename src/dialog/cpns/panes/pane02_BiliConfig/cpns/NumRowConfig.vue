@@ -1,12 +1,12 @@
 <script setup>
 const props = defineProps({
   min: {
-    type: [String, Boolean],
-    default: false,
+    type: Number,
+    default: -Infinity,
   },
   max: {
-    type: [String, Boolean],
-    default: false,
+    type: Number,
+    default: Infinity,
   },
   desc: {
     type: String,
@@ -21,8 +21,8 @@ const props = defineProps({
     default: "设为默认值",
   },
   tip: {
-    type: [String, Boolean],
-    default: false,
+    type: String,
+    default: '',
   }
 });
 
@@ -37,7 +37,7 @@ function setCssVarDefault() {
   <el-row class="setting-row">
     <el-col class="setting-container" :span="24">
       <el-tooltip
-          :disabled="!tip"
+          :disabled="tip === ''"
           :content="tip"
           placement="bottom"
       >
