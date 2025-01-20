@@ -50,13 +50,16 @@ class Query {
                 return ele; // 找到元素，结束 Promise
             }
             if (this.timeout !== -1 && Date.now() - startTime > this.timeout) {
+                console.warn(`$Q_Async: Timeout: Cannot find element for selector "${selector}"`);
+
                 if (this.onError !== null) {
                     this.onError();
                 }
+
                 if (!this.isBlocking) {
                     return this.errEl;
                 }
-                console.warn(`$Q_Async: Timeout: Cannot find element for selector "${selector}"`);
+
                 return new Promise(() => {});  // 永远不会解决或拒绝的 Promise, 无限pending
             }
 

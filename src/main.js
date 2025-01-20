@@ -10,7 +10,6 @@ import { storeToRefs } from 'pinia';
 
 const pinia = createPinia();
 
-
 const app = createApp(App).use(pinia)
 
 const mainStore = useMainStore();

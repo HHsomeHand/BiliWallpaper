@@ -9,7 +9,7 @@ import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import monkey from 'vite-plugin-monkey'
 import { cdn } from 'vite-plugin-monkey'
 import fs from 'fs';
-
+import Markdown from 'unplugin-vue-markdown/vite'
 
 const pathSrc = path.resolve(__dirname, 'src')
 
@@ -21,7 +21,12 @@ export default defineConfig({
     extensions: ['.js', '.ts', '.mjs', '.json', '.jsx', '.tsx'], 
   },
   plugins: [
-    Vue(),
+    Vue({
+      include: [/\.vue$/, /\.md$/], // <-- allows Vue to compile Markdown files
+    }),
+
+    Markdown(),
+
     AutoImport({
       // 自动导入 Vue 相关函数，如：ref, reactive, toRef 等
       imports: ['vue'],
@@ -86,8 +91,6 @@ export default defineConfig({
     Icons({
       autoInstall: true,
     }),
-
-    
 
     monkey({
       entry: 'src/main.js',

@@ -12,10 +12,12 @@
   "dependencies": {
     "@element-plus/icons-vue": "^2.3.1",
     "@vueuse/core": "^11.2.0",
+    "babel-runtime": "^6.26.0",
     "compressorjs": "^1.2.1",
     "element-plus": "^2.8.6",
     "pinia": "^2.2.5",
     "underscore": "^1.13.7",
+    "unplugin-vue-markdown": "^28.1.0",
     "vite-plugin-inspect": "^0.8.7",
     "vue": "^3.4.27"
   },
