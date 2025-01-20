@@ -51,12 +51,13 @@ export default defineConfig({
 
     {
       name: 'generate-base64-constants',
-      buildEnd() {
+      enforce: 'pre',
+      configResolved(config) {
         const imgDir = path.resolve(__dirname, 'src/assets/img');
         const images = fs.readdirSync(imgDir);
 
         // 判断是否是 最小化构建
-        const env = loadEnv("mode", process.cwd());
+        const env = loadEnv(config.mode, process.cwd());
         const isSmallBuild = env.VITE_SMALL_BUILD === 'true';
         const targetImage = '蓝山.jpg'; // 最小打包时, 打包的图片
 
