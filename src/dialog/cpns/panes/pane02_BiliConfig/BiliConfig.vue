@@ -5,6 +5,7 @@ import {useBiliStore} from "@/store/bilibili.mjs";
 import {useMainStore} from "@/store/main.mjs";
 import CssVarConfig from "@/dialog/cpns/panes/pane02_BiliConfig/cpns/CssVarConfig.vue";
 import {useConfig} from "@/hooks/useConfig.mjs";
+import {SEARCH_BAR_TOP_GAP, SEARCH_BAR_WIDTH, SEARCH_BAR_X_OFFSET} from "@/const/search-bar-const.js";
 const biliStore = useBiliStore();
 
 const {
@@ -12,6 +13,8 @@ const {
   displayConfigDescs,
   displayConfigCount,
   searchBarTopGap,
+  searchBarWidth,
+  searchBarXOffset,
   wallpaperPosX,
   wallpaperPosY,
   wallpaperSize,
@@ -36,7 +39,15 @@ const rowCount = computed(() => {
 // });
 
 function setTopGapDefault() {
-  searchBarTopGap.value = 35;
+  searchBarTopGap.value = SEARCH_BAR_TOP_GAP;
+}
+
+function setSearchBarWidthDefault() {
+  searchBarWidth.value = SEARCH_BAR_WIDTH;
+}
+
+function setSearchBarXOffsetDefault() {
+  searchBarXOffset.value = SEARCH_BAR_X_OFFSET;
 }
 
 const mainStore = useMainStore();
@@ -84,7 +95,10 @@ let optionsSize = [
   },
 ]
 
-const posTip = ref("壁纸如果很长, 设置效果就会很明显");
+const posTipX = ref("壁纸如果很长, 设置效果就会很明显");
+const posTipY = ref("壁纸如果很高, 设置效果就会很明显");
+
+
 const posNumTip = ref("可以输入负值")
 
 const activeName = useConfig('bili-config-active-name', false);
@@ -121,11 +135,27 @@ const activeName = useConfig('bili-config-active-name', false);
       </el-col>
     </el-row>
 
-    <css-var-config :tip="posTip" v-model="wallpaperPosX" default="center" mode="string" :options="optionsX" >
+    <el-row class="setting-row">
+      <el-col class="setting-container" :span="24">
+        <el-text class="input-label">搜索框宽度, 单位vw:</el-text>
+        <el-input-number v-model="searchBarWidth" :min="0" :max="100"/>
+        <el-button class="default-btn" type="primary" plain @click="setSearchBarWidthDefault">宽度设为默认值</el-button>
+      </el-col>
+    </el-row>
+
+    <el-row class="setting-row">
+      <el-col class="setting-container" :span="24">
+        <el-text class="input-label">搜索框X轴偏移, 单位px:</el-text>
+        <el-input-number v-model="searchBarXOffset"/>
+        <el-button class="default-btn" type="primary" plain @click="setSearchBarXOffsetDefault">偏移设为默认值</el-button>
+      </el-col>
+    </el-row>
+
+    <css-var-config :tip="posTipX" v-model="wallpaperPosX" default="center" mode="string" :options="optionsX" >
       壁纸X轴显示位置
     </css-var-config>
 
-    <css-var-config :tip="posTip"  v-model="wallpaperPosY" default="center" mode="string" :options="optionsY">
+    <css-var-config :tip="posTipY"  v-model="wallpaperPosY" default="center" mode="string" :options="optionsY">
       壁纸Y轴显示位置
     </css-var-config>
 

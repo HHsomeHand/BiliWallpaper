@@ -1,15 +1,25 @@
 import { $Q } from "./utils.mjs";
 import {useConfig} from "@/hooks/useConfig.mjs";
+import {SCROLL_DURATION} from "@/const/search-bar-const.js";
 
-export function applyOriginalShowState(isShow) {
+export async function applyOriginalShowState(isShow) {
   if (isShow) {
     // 让内容(视频推送)升上来
     $Q('.bili-header__banner').style.translate = '0 0';
     $Q('.bili-header__channel').style.translate = '0 0';
     $Q('.bili-feed4-layout').style.translate = '0 0';
     // 搜索栏
-    $Q('.center-search__bar').style.translate = '0 0';
-    $Q('.center-search__bar').style.transition = 'var(--scroll-duration)  var(--scroll-timing-function)';
+    // $Q('.center-search__bar').style.
+
+    $Q('.center-search-container').style.opacity = '0';
+
+    setTimeout(() => {
+      $Q('.center-search-container').style.position = 'static';
+      $Q('.center-search-container').style.translate = '0 0';
+      $Q('.center-search-container').style.opacity = '1';
+    }, SCROLL_DURATION * 1000);
+
+
     // 让浮动频道条出现(见src/asserts/css/bilibili.css浮动频道条注释)
     $Q('.header-channel').id = 'header-channel-show';
   }
@@ -19,7 +29,14 @@ export function applyOriginalShowState(isShow) {
     $Q('.bili-header__banner').style.translate = '';
     $Q('.bili-header__channel').style.translate = '';
     $Q('.bili-feed4-layout').style.translate = '';
-    $Q('.center-search__bar').style.translate = '';
+
+    $Q('.center-search-container').style.opacity = '0';
+    setTimeout(() => {
+      $Q('.center-search-container').style.translate = '';
+      $Q('.center-search-container').style.position = '';
+      $Q('.center-search-container').style.opacity = '1';
+    }, SCROLL_DURATION * 1000);
+
     $Q('.header-channel').id = '';
   }
 }

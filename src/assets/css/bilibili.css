@@ -2,11 +2,15 @@
   --scroll-duration: 0.5s;
   --scroll-timing-function: ease;
   --search-bar-top-gap: 35vh;
+  --search-bar-width: 40vw;
+  /* 负值为向左偏移, 正值为向右偏移 */
+  --search-bar-x-offset: 0px;
 
   --wallpaper-pos-x: center;
   --wallpaper-pos-y: center;
   --wallpaper-size: cover;
   --wallpaper-bg-color: whitesmoke;
+
 }
 
 .adblock-tips {
@@ -46,9 +50,18 @@
 == 顶部搜索栏 ==
 ===============
 */
-.center-search__bar {
-  translate: 0 var(--search-bar-top-gap);
+.center-search-container {
+  width: var(--search-bar-width);
+  position: absolute;
+  top: var(--search-bar-top-gap);
+  left: calc(50vw + var(--search-bar-x-offset));
+  translate: -50% 0;
+
+  transition: opacity var(--scroll-duration)  var(--scroll-timing-function);
 }
+/*.center-search__bar {*/
+/*  translate: 0 var(--search-bar-top-gap);*/
+/*}*/
 
 /*.search-panel .trending {*/
 /*  display: none;*/

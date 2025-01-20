@@ -92,10 +92,12 @@ export default defineConfig({
     monkey({
       entry: 'src/main.js',
       userscript: {
-        icon: 'https://vitejs.dev/logo.svg',
+        author: 'QQ2402398917',
+        version: '2.1.1',
+        icon: 'https://i0.hdslb.com/bfs/static/jinkela/long/images/favicon.ico',
         namespace: 'npm/vite-plugin-monkey',
         match: ['https://www.bilibili.com/*'],
-        exclude: ['https://www.bilibili.com/*/*'],
+        exclude: ['https://www.bilibili.com/*/*', 'https://www.bilibili.com/history*'],
       },
       build: {
         externalGlobals: {
