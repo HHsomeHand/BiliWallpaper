@@ -1,8 +1,15 @@
 // 通用dom操作
-const errEl = document.createElement('div');
-errEl.classList.add('no-found');
-
 export function $Q(selector) {
+  let errEl = document.body.errEl;
+
+  if (errEl === undefined) {
+    errEl = document.createElement('div');
+    errEl.classList.add('no-found');
+    errEl.remove = () => {};
+
+    document.body.errEl = errEl;
+  }
+
   let ele = document.querySelector(selector);
   if (ele == null) {
     // 边界情况, 当没找到时, 避免使用者操作null对象

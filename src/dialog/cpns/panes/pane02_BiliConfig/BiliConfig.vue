@@ -6,6 +6,7 @@ import {useMainStore} from "@/store/main.mjs";
 import CssVarConfig from "@/dialog/cpns/panes/pane02_BiliConfig/cpns/CssVarConfig.vue";
 import {useConfig} from "@/hooks/useConfig.mjs";
 import {SEARCH_BAR_TOP_GAP, SEARCH_BAR_WIDTH, SEARCH_BAR_X_OFFSET} from "@/const/search-bar-const.js";
+import NumRowConfig from "@/dialog/cpns/panes/pane02_BiliConfig/cpns/NumRowConfig.vue";
 const biliStore = useBiliStore();
 
 const {
@@ -31,24 +32,6 @@ const rowCount = computed(() => {
   // 向上取整
   return Math.ceil(displayConfigCount.value / COL_COUNT);
 })
-
-// const searchBarTopGapNum = ref(parseInt(searchBarTopGap.value));
-//
-// watch(searchBarTopGapNum, () => {
-//   searchBarTopGap.value = searchBarTopGapNum.value + 'vh';
-// });
-
-function setTopGapDefault() {
-  searchBarTopGap.value = SEARCH_BAR_TOP_GAP;
-}
-
-function setSearchBarWidthDefault() {
-  searchBarWidth.value = SEARCH_BAR_WIDTH;
-}
-
-function setSearchBarXOffsetDefault() {
-  searchBarXOffset.value = SEARCH_BAR_X_OFFSET;
-}
 
 const mainStore = useMainStore();
 
@@ -127,29 +110,31 @@ const activeName = useConfig('bili-config-active-name', false);
       </el-row>
     </template>
 
-    <el-row class="setting-row">
-      <el-col class="setting-container" :span="24">
-        <el-text class="input-label">搜索框离顶部高度, 单位vh:</el-text>
-        <el-input-number v-model="searchBarTopGap" :min="0" :max="100"/>
-        <el-button class="default-btn" type="primary" plain @click="setTopGapDefault">距顶设为默认值</el-button>
-      </el-col>
-    </el-row>
+    <NumRowConfig
+        v-model="searchBarTopGap"
+        desc="搜索框离顶部高度, 单位vh:"
+        :min="0"
+        :max="100"
+        default-btn-desc="距顶设为默认值"
+        :default-value="SEARCH_BAR_TOP_GAP"
+    />
 
-    <el-row class="setting-row">
-      <el-col class="setting-container" :span="24">
-        <el-text class="input-label">搜索框宽度, 单位vw:</el-text>
-        <el-input-number v-model="searchBarWidth" :min="0" :max="100"/>
-        <el-button class="default-btn" type="primary" plain @click="setSearchBarWidthDefault">宽度设为默认值</el-button>
-      </el-col>
-    </el-row>
+    <NumRowConfig
+        v-model="searchBarWidth"
+        desc="搜索框宽度, 单位vw:"
+        :min="0"
+        :max="100"
+        default-btn-desc="宽度设为默认值"
+        :default-value="SEARCH_BAR_WIDTH"
+    />
 
-    <el-row class="setting-row">
-      <el-col class="setting-container" :span="24">
-        <el-text class="input-label">搜索框X轴偏移, 单位px:</el-text>
-        <el-input-number v-model="searchBarXOffset"/>
-        <el-button class="default-btn" type="primary" plain @click="setSearchBarXOffsetDefault">偏移设为默认值</el-button>
-      </el-col>
-    </el-row>
+    <NumRowConfig
+        v-model="searchBarXOffset"
+        desc="搜索框X轴偏移, 单位px:"
+        default-btn-desc="偏移设为默认值"
+        :default-value="SEARCH_BAR_X_OFFSET"
+        tip="正数往右偏, 复数往左偏"
+    />
 
     <css-var-config :tip="posTipX" v-model="wallpaperPosX" default="center" mode="string" :options="optionsX" >
       壁纸X轴显示位置
