@@ -114,9 +114,9 @@ const activeName = useConfig('bili-config-active-name', false);
     </el-row>
 
 <!--    取索引, 写在第一位是从0开始 语法无误-->
-    <template v-for="(, rowIndex) of rowCount">
+    <template v-for="(_rowIndex, rowIndex) of rowCount">
       <el-row class="wide-row">
-        <template v-for="(, colIndex) of COL_COUNT ">
+        <template v-for="(_colIndex, colIndex) of COL_COUNT ">
           <el-col class="checkbox-wrapper" :span="24 / COL_COUNT">
             <template v-if="rowIndex * COL_COUNT + colIndex < displayConfigCount">
               <el-checkbox :label="displayConfigDescs[rowIndex * COL_COUNT + colIndex]"
