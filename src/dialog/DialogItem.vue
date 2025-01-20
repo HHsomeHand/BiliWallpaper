@@ -30,7 +30,7 @@ async function onDialogOpen() {
 
 <style lang="less" scoped>
 .upload-dialog {
-  --el-overlay-color-lighter: rgba(0, 0, 0, 0.3);
+  --el-overlay-color-lighter: rgba(0, 0, 0, 0.2);
   --el-message-close-size: 20px;
 }
 

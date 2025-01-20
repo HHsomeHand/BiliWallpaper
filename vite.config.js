@@ -102,6 +102,7 @@ export default defineConfig({
         namespace: 'npm/vite-plugin-monkey',
         match: ['https://www.bilibili.com/*'],
         exclude: ['https://www.bilibili.com/*/*', 'https://www.bilibili.com/history*'],
+        description: "删除推送, 专心学习, 设置B站壁纸"
       },
       build: {
         externalGlobals: {

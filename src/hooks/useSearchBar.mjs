@@ -8,19 +8,27 @@ export function useSearchBar(inputSelector) {
     const isAutoFocus = useConfig('isAutoFocus', false);
 
     queryAsync(inputSelector).then(inputEl => {
-        let placeholder =inputEl.placeholder;
+        let timerId = setInterval(() => {
+            let placeholder = inputEl.placeholder;
 
-        watch(isShowPlaceHolder, () => {
-            if (isShowPlaceHolder.value) {
-                inputEl.placeholder = placeholder;
+            if (placeholder === '') {
+                return;
             } else {
-                inputEl.placeholder = '';
+                clearInterval(timerId);
             }
-        }, {immediate: true});
 
-        if (isAutoFocus.value) {
-            inputEl.focus();
-        }
+            watch(isShowPlaceHolder, () => {
+                if (isShowPlaceHolder.value) {
+                    inputEl.placeholder = placeholder;
+                } else {
+                    inputEl.placeholder = '';
+                }
+            }, {immediate: true});
+
+            if (isAutoFocus.value) {
+                inputEl.focus();
+            }
+        }, 200);
     }).catch(err => console.error(err));
 
 
